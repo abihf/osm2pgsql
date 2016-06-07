@@ -494,6 +494,11 @@ options_t::options_t(int argc, char *argv[]): options_t()
         } else {
             database_options.password = std::string(prompt);
         }
+    } else {
+        char *password = getenv("PGPASS");
+        if (password != nullptr) {
+            database_options.password = std::string(password);
+        }
     }
 
 
